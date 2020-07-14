@@ -18,7 +18,6 @@ interface Props {
 }
 
 const RowDetails: React.FC<Props> = ({ selectedRow }) => {
-  console.log(selectedRow)
   return (
     <div>
       <p>
