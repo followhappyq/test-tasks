@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import lodash from "lodash"
+import lodash, { isEmpty } from "lodash"
 
-import { Table as BaseTable } from "../components"
+import { Table as BaseTable, RowDetails } from "../components"
 import { Loader } from "../../../components"
 
 interface Type {
@@ -10,6 +10,13 @@ interface Type {
   lastName: string
   "      email": string
   phone: string
+  description?: string
+  adress?: {}
+}
+
+interface SortFieldType {
+  field: string
+  type: string
 }
 
 const onFetchData = async (setShortData: any, setIsLoading: any, setOrderedData: any) => {
@@ -33,11 +40,14 @@ const Table = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [type, setType] = useState("asc")
   const [orderedData, setOrderedData] = useState<Array<Type>>([])
+  const [sortField, setSortField] = useState({ field: "", type: "" })
+  const [selectedRow, setSelectedRow] = useState()
 
   const sortByField = (sortField: string) => {
     const unsortedData = shortData.concat()
     const orderedData = orderData(unsortedData, sortField)
     onOrderData(orderedData)
+    setSortField({ field: sortField, type: type })
   }
 
   const onOrderData = (orderedData: Array<Type>) => {
@@ -54,13 +64,23 @@ const Table = () => {
     }
   }
 
+  const onSelectRow = (item: any) => {
+    setSelectedRow(item)
+  }
+
   useEffect(() => {
     onFetchData(setShortData, setIsLoading, setOrderedData)
   }, [])
 
   return (
     <React.Fragment>
-      {isLoading ? <Loader /> : <BaseTable data={orderedData} sortByField={sortByField} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <BaseTable data={orderedData} sortByField={sortByField} sortField={sortField} onSelectRow={onSelectRow} />
+      )}
+
+      {isEmpty(selectedRow) ? "" : <RowDetails selectedRow={selectedRow} />}
     </React.Fragment>
   )
 }
