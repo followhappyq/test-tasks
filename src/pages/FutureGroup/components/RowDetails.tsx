@@ -1,23 +1,11 @@
-import React from "react"
+import React, { FC } from "react"
+import { Type } from "../containers/Table"
 
 interface Props {
-  selectedRow: {
-    id: number
-    firstName: string
-    lastName: string
-    "      email": string
-    phone: string
-    description?: string
-    address?: {
-      city: string
-      state: string
-      streetAddress: string
-      zip: string
-    }
-  }
+  selectedRow: Type
 }
 
-const RowDetails: React.FC<Props> = ({ selectedRow }) => {
+const RowDetails: FC<Props> = ({ selectedRow }) => {
   return (
     <div>
       <p>

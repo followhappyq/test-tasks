@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
-import lodash, { isEmpty } from "lodash"
+import React, { useEffect, useState, FC } from "react"
+import lodash from "lodash"
 import ReactPaginate from "react-paginate"
 
 import { Table as BaseTable, RowDetails } from "../components"
 import { Loader } from "../../../components"
 
-interface Type {
+export interface Type {
   id: number
   firstName: string
   lastName: string
@@ -27,7 +27,12 @@ interface SortFieldType {
 
 const pageSize = 20
 
-const onFetchData = async (setShortData: any, setIsLoading: any, setOrderedData: any, setDisplayData: any) => {
+const onFetchData = async (
+  setShortData: (data: Array<Type>) => void,
+  setIsLoading: (bool: boolean) => void,
+  setOrderedData: (data: any) => void,
+  setDisplayData: (data: any) => void
+) => {
   await fetch(
     `http://www.filltext.com/?rows=50&id={number|1000}&firstName={firstName}&lastName={lastName}&
       email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`
@@ -44,20 +49,14 @@ const onFetchData = async (setShortData: any, setIsLoading: any, setOrderedData:
     })
 }
 
-const Table = () => {
-  const [shortData, setShortData] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [type, setType] = useState("asc")
+const Table: FC = () => {
+  const [shortData, setShortData] = useState<Array<Type>>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [type, setType] = useState<string>("asc")
   const [orderedData, setOrderedData] = useState<Array<Type>>([])
   const [sortField, setSortField] = useState({ field: "", type: "" })
-  const [selectedRow, setSelectedRow] = useState<Type>({
-    firstName: "",
-    lastName: "",
-    "      email": "",
-    phone: "",
-    id: 0,
-  })
-  const [currentPage, setCurrentPage] = useState(0)
+  const [selectedRow, setSelectedRow] = useState<Type | null>(null)
+  const [currentPage, setCurrentPage] = useState<number>(0)
   const [displayData, setDisplayData] = useState<Array<Type>>([])
 
   const pageCount = orderedData.length / pageSize
@@ -83,11 +82,10 @@ const Table = () => {
     }
   }
 
-  const onSelectRow = (item: any) => {
+  const onSelectRow = (item: Type) => {
     setSelectedRow(item)
   }
-  const pageChangeHandler = (data: any) => {
-    const selected = data.selected
+  const pageChangeHandler = ({ selected }: { selected: number }) => {
     setCurrentPage(selected)
   }
 
@@ -123,7 +121,7 @@ const Table = () => {
         nextLinkClassName="page-link"
         onPageChange={pageChangeHandler}
       />
-      {isEmpty(selectedRow) ? "" : <RowDetails selectedRow={selectedRow} />}
+      {selectedRow && <RowDetails selectedRow={selectedRow} />}
     </React.Fragment>
   )
 }
