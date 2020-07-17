@@ -20,7 +20,7 @@ export interface Type {
   }
 }
 
-interface SortFieldType {
+export interface SortFieldType {
   field: string
   type: string
 }
@@ -30,7 +30,7 @@ const pageSize = 20
 const onFetchData = async (
   setShortData: (data: Array<Type>) => void,
   setIsLoading: (bool: boolean) => void,
-  setOrderedData: (data: any) => void,
+  setOrderedData: (data: Array<Type>) => void,
   setDisplayData: (data: any) => void
 ) => {
   await fetch(
@@ -54,7 +54,7 @@ const Table: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [type, setType] = useState<string>("asc")
   const [orderedData, setOrderedData] = useState<Array<Type>>([])
-  const [sortField, setSortField] = useState({ field: "", type: "" })
+  const [sortField, setSortField] = useState<SortFieldType>({ field: "", type: "" })
   const [selectedRow, setSelectedRow] = useState<Type | null>(null)
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [displayData, setDisplayData] = useState<Array<Type>>([])

@@ -1,9 +1,11 @@
 import React from "react"
 
+import { SortFieldType } from "../containers/Table"
+
 interface Table {
   data: Array<Type>
   sortByField: (sortField: string) => void
-  sortField: { field: string; type: string }
+  sortField: SortFieldType
   onSelectRow: (item: any) => void
 }
 
