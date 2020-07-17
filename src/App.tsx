@@ -1,7 +1,7 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
 
-import { Home, FutureGroup } from "./pages/"
+import { Home, FutureGroup, SongBird } from "./pages/"
 
 const App = () => {
   return (
@@ -9,6 +9,7 @@ const App = () => {
       <Switch>
         <Route exact path={["/"]} component={Home} />
         <Route exact path={["/future-group"]} component={FutureGroup} />
+        <Route exact path={["/songbird"]} component={SongBird} />
       </Switch>
     </div>
   )

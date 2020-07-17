@@ -1,0 +1,9 @@
+.quiz-details {
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__item {
+    padding: 10px;
+  }
+}

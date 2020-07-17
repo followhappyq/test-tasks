@@ -1,0 +1,16 @@
+.songbird {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo,
+  &__score {
+    padding: 20px;
+    font-size: 20px;
+  }
+  &__logo {
+    font-size: 36px;
+    font-family: "Galada", cursive;
+  }
+}

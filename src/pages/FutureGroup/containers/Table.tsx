@@ -95,6 +95,7 @@ const Table: FC = () => {
 
   useEffect(() => {
     setDisplayData(lodash.chunk(orderedData, pageSize)[currentPage])
+    // eslint-disable-next-line
   }, [currentPage])
 
   return (
