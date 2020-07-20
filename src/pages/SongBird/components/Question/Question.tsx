@@ -1,6 +1,6 @@
 import React from "react"
 
-import { AudioPlayer } from "../"
+import { AudioPlayer } from "../../containers"
 import "./question.scss"
 interface Props {}
 

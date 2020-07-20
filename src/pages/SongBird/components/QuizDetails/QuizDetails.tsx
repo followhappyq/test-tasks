@@ -18,7 +18,9 @@ const QuizDetails = (props: Props) => {
     <div className="quiz-details">
       <ul className="quiz-details__list">
         {quizDetailsData.map((item) => (
-          <li className="quiz-details__item">{item}</li>
+          <li className="quiz-details__item" key={item}>
+            {item}
+          </li>
         ))}
       </ul>
     </div>
