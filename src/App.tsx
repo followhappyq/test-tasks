@@ -1,7 +1,7 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
 
-import { Home, FutureGroup, SongBird } from "./pages/"
+import { Home, FutureGroup, SongBirdContainer as SongBird } from "./pages/"
 
 const App = () => {
   return (

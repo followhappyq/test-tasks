@@ -1,9 +1,11 @@
 .quiz-details {
+  border: 1px solid black;
+  height: 42px;
   &__list {
     display: flex;
     justify-content: space-evenly;
-  }
-  &__item {
-    padding: 10px;
+    align-items: center;
+    height: 100%;
+    margin: 0;
   }
 }

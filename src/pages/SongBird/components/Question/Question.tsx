@@ -1,20 +1,20 @@
-import React from "react"
+import React, { FC } from "react"
 
 import { AudioPlayer } from "../../containers"
 import "./question.scss"
-interface Props {}
+interface Props {
+  imageSrc: string
+  audioSrc: string
+  name: string
+}
 
-const Question = (props: Props) => {
+const Question: FC<Props> = ({ imageSrc, audioSrc, name }) => {
   return (
     <div className="question">
-      <img
-        src="https://live.staticflickr.com//65535//49298804222_474cfe8682.jpg"
-        alt="bird"
-        className="question__bird"
-      />
+      <img src={imageSrc} alt="bird" className="question__bird" />
       <div className="question__wrapper">
-        <div className="question__name">Ворон</div>
-        <AudioPlayer />
+        <div className="question__name">{name}</div>
+        <AudioPlayer audioSrc={audioSrc} />
       </div>
     </div>
   )
