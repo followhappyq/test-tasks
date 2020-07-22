@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react"
+import React, { FC, useState, useRef, useEffect } from "react"
 
 import { AnswerOptionsItem as BaseAnswerOptionsItem } from "../../components"
 
@@ -8,9 +8,10 @@ export interface Props {
   correctId: number
   correctAnswer: boolean
   setCorrectAnswer: (state: boolean) => void
+  isNextRoundStarted: boolean
 }
 
-const AnswerOptionsItem: FC<Props> = ({ id, name, correctId, correctAnswer, setCorrectAnswer }) => {
+const AnswerOptionsItem: FC<Props> = ({ id, name, correctId, correctAnswer, setCorrectAnswer, isNextRoundStarted }) => {
   const [wrong, setWrong] = useState<boolean>()
   const [success, setSuccess] = useState<boolean>()
 
@@ -22,7 +23,7 @@ const AnswerOptionsItem: FC<Props> = ({ id, name, correctId, correctAnswer, setC
       if (correctId === id) {
         setSuccess(true)
         setCorrectAnswer(true)
-        onAnswerClicked(successAudioRef)
+        successAudioRef.current?.play()
       } else {
         setWrong(true)
         wrongAudioRef.current?.play()
@@ -30,9 +31,12 @@ const AnswerOptionsItem: FC<Props> = ({ id, name, correctId, correctAnswer, setC
     }
   }
 
-  const onAnswerClicked: (current: any) => void = ({ current }) => {
-    current.play()
-  }
+  useEffect(() => {
+    return () => {
+      setSuccess(false)
+      setWrong(false)
+    }
+  }, [isNextRoundStarted])
 
   return (
     <BaseAnswerOptionsItem

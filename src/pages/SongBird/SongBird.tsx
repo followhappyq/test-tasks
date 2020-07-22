@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, Dispatch, SetStateAction } from "react"
 
 import { Header, QuizDetails, Question, AnswerOptions, NextQuestion, AnswerDetails } from "./containers"
 import "./style.scss"
@@ -9,6 +9,9 @@ interface Props {
   onChangeQuestionNumber: () => void
   onChooseAnswer: (id: number) => void
   chosenAnswer: number
+  foundAnswer: boolean
+  setFoundAnswer: Dispatch<SetStateAction<boolean>>
+  isNextRoundStarted: boolean
 }
 
 export interface listType {
@@ -26,6 +29,9 @@ const SongBird: FC<Props> = ({
   onChangeQuestionNumber,
   onChooseAnswer,
   chosenAnswer,
+  foundAnswer,
+  setFoundAnswer,
+  isNextRoundStarted,
 }) => {
   return (
     <div className="songbird">
@@ -37,11 +43,13 @@ const SongBird: FC<Props> = ({
           currentQuestionList={currentQuestionList}
           correctId={currentQuestion.id}
           onChooseAnswer={onChooseAnswer}
+          setFoundAnswer={setFoundAnswer}
+          isNextRoundStarted={isNextRoundStarted}
         />
         <AnswerDetails chosenAnswer={currentQuestionList[chosenAnswer]} />
       </div>
       <div className="songbird__footer">
-        <NextQuestion onChangeQuestionNumber={onChangeQuestionNumber} />
+        <NextQuestion onChangeQuestionNumber={onChangeQuestionNumber} foundAnswer={foundAnswer} />
       </div>
     </div>
   )
