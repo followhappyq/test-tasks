@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 
 import { AnswerOptions as BaseAnswerOptions } from "../../components"
 import { listType } from "../../SongBird"
@@ -10,7 +10,6 @@ export interface Props {
 }
 
 const AnswerOptions: FC<Props> = ({ currentQuestionList, correctId, onChooseAnswer }) => {
-  const [check, setCheck] = useState()
   return (
     <BaseAnswerOptions
       currentQuestionList={currentQuestionList}

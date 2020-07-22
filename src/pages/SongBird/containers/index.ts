@@ -6,3 +6,4 @@ export { default as AudioPlayerController } from "./AudioPlayer/AudioPlayerContr
 export { default as AnswerOptions } from "./AnswerOptions/AnswerOptions"
 export { default as NextQuestion } from "./NextQuestion/NextQuestion"
 export { default as AnswerDetails } from "./AnswerDetails/AnswerDetails"
+export { default as AnswerOptionsItem } from "./AnswerOptionsItem/AnswerOptionsItem"
