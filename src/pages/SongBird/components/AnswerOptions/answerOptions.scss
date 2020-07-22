@@ -1,0 +1,37 @@
+.questions {
+  &__list {
+    width: 100%;
+    height: 100%;
+  }
+  &__item {
+    height: 16.5%;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    border-bottom: 1px solid #cccccc;
+    cursor: pointer;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  &__circle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+    background-color: #666;
+  }
+  &__error {
+    background-color: #d62c1a;
+  }
+
+  &__success {
+    background-color: #00bc8c;
+  }
+}

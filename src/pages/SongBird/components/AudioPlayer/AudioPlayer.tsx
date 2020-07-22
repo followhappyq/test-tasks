@@ -1,6 +1,5 @@
 import React, { FC } from "react"
 
-import { PlayerButton } from "../"
 import "./audioPlayer.scss"
 
 interface Props {
@@ -13,8 +12,9 @@ interface Props {
 const AudioPlayer: FC<Props> = ({ audio, isPlaying, onPlayClicked, audioSrc }) => {
   return (
     <div className="audio-player">
-      <audio src={audioSrc} ref={audio} />
-      <PlayerButton onPlayClicked={onPlayClicked} audio={audio} isPlaying={isPlaying} />
+      <audio controls>
+        <source src={audioSrc} type="audio/ogg" />
+      </audio>
     </div>
   )
 }

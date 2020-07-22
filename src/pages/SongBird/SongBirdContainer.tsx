@@ -15,11 +15,23 @@ const SongBirdContainer = (props: Props) => {
   const [currentQuestionList, setCurrentQuestionList] = useState(questions[0])
   const [isGameEnd, setIsGameEnd] = useState<boolean>(false)
   const [questionNumber, setQuestionNumber] = useState<number>(0)
+  const [chosenAnswer, setChosenAnswer] = useState<number>(0)
 
   const chooseCurrentQuestion: () => void = useCallback(() => {
     const currentQuestionListLength = currentQuestionList.length
     setCurrentQuestion(getRandomNumber(currentQuestionListLength))
   }, [currentQuestionList])
+
+  const checkChosenAnswer: (id: number) => boolean = (id) => {
+    if (id === currentQuestionList[currentQuestion].id) {
+      return true
+    }
+    return false
+  }
+
+  const onChooseAnswer: (id: number) => void = (id) => {
+    setChosenAnswer(id - 1)
+  }
 
   const onChangeQuestionNumber: () => void = () => {
     if (questionNumber === questions.length - 1) {
@@ -42,13 +54,13 @@ const SongBirdContainer = (props: Props) => {
     onChangeCurrentQuestionList()
   }, [questionNumber, onChangeCurrentQuestionList])
 
-  useEffect(() => {}, [isGameEnd])
-
   return (
     <SongBird
       currentQuestion={currentQuestionList[currentQuestion]}
       currentQuestionList={currentQuestionList}
       onChangeQuestionNumber={onChangeQuestionNumber}
+      onChooseAnswer={onChooseAnswer}
+      chosenAnswer={chosenAnswer}
     />
   )
 }

@@ -1,0 +1,29 @@
+.songbird {
+  &__main {
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+}
+
+.questions {
+  width: 100%;
+}
+
+.question,
+.quiz-details,
+.questions,
+.answer-details {
+  box-shadow: 0 0 3px #ccc;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
