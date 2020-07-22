@@ -22,13 +22,6 @@ const SongBirdContainer = (props: Props) => {
     setCurrentQuestion(getRandomNumber(currentQuestionListLength))
   }, [currentQuestionList])
 
-  const checkChosenAnswer: (id: number) => boolean = (id) => {
-    if (id === currentQuestionList[currentQuestion].id) {
-      return true
-    }
-    return false
-  }
-
   const onChooseAnswer: (id: number) => void = (id) => {
     setChosenAnswer(id - 1)
   }

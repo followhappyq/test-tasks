@@ -1,15 +1,30 @@
 import React, { FC } from "react"
 
-import { Props } from "../../containers/AnswerOptions/AnswerOptions"
+import { listType } from "../../SongBird"
 import { AnswerOptionsItem } from "../../containers"
 import "./answerOptions.scss"
 
-const AnswerOptions: FC<Props> = ({ currentQuestionList, correctId }) => {
+interface Props {
+  currentQuestionList: Array<listType>
+  correctId: number
+  onChooseAnswer: (id: number) => void
+  correctAnswer: boolean
+  setCorrectAnswer: (state: boolean) => void
+}
+
+const AnswerOptions: FC<Props> = ({ currentQuestionList, correctId, correctAnswer, setCorrectAnswer }) => {
   return (
     <div className="questions">
       <ul className="questions__list">
         {currentQuestionList.map((item) => (
-          <AnswerOptionsItem name={item.name} id={item.id} key={item.id} correctId={correctId} />
+          <AnswerOptionsItem
+            name={item.name}
+            id={item.id}
+            key={item.id}
+            correctId={correctId}
+            correctAnswer={correctAnswer}
+            setCorrectAnswer={setCorrectAnswer}
+          />
         ))}
       </ul>
     </div>
