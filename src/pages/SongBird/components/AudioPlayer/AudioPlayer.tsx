@@ -12,7 +12,7 @@ interface Props {
 const AudioPlayer: FC<Props> = ({ audio, isPlaying, onPlayClicked, audioSrc }) => {
   return (
     <div className="audio-player">
-      <audio controls>
+      <audio controls ref={audio}>
         <source src={audioSrc} type="audio/ogg" />
       </audio>
     </div>

@@ -11,6 +11,8 @@ export interface Props {
   setCorrectAnswer: (state: boolean) => void
   isNextRoundStarted: boolean
   currentQuestion: listType
+  isAnswerIncorrect: () => void
+  onChooseAnswer: (id: number) => void
 }
 
 const AnswerOptionsItem: FC<Props> = ({
@@ -21,6 +23,8 @@ const AnswerOptionsItem: FC<Props> = ({
   setCorrectAnswer,
   isNextRoundStarted,
   currentQuestion,
+  isAnswerIncorrect,
+  onChooseAnswer,
 }) => {
   const [wrong, setWrong] = useState<boolean>()
   const [success, setSuccess] = useState<boolean>()
@@ -34,9 +38,12 @@ const AnswerOptionsItem: FC<Props> = ({
         setSuccess(true)
         setCorrectAnswer(true)
         successAudioRef.current?.play()
+        onChooseAnswer(id)
       } else {
         setWrong(true)
         wrongAudioRef.current?.play()
+        isAnswerIncorrect()
+        onChooseAnswer(id)
       }
     }
   }

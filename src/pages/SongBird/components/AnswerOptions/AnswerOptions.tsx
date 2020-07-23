@@ -12,6 +12,7 @@ interface Props {
   setCorrectAnswer: (state: boolean) => void
   isNextRoundStarted: boolean
   currentQuestion: listType
+  isAnswerIncorrect: () => void
 }
 
 const AnswerOptions: FC<Props> = ({
@@ -21,9 +22,11 @@ const AnswerOptions: FC<Props> = ({
   setCorrectAnswer,
   isNextRoundStarted,
   currentQuestion,
+  isAnswerIncorrect,
+  onChooseAnswer,
 }) => {
   return (
-    <div className="questions">
+    <div className="questions col-md">
       <ul className="questions__list">
         {currentQuestionList.map((item) => (
           <AnswerOptionsItem
@@ -35,6 +38,8 @@ const AnswerOptions: FC<Props> = ({
             setCorrectAnswer={setCorrectAnswer}
             isNextRoundStarted={isNextRoundStarted}
             currentQuestion={currentQuestion}
+            isAnswerIncorrect={isAnswerIncorrect}
+            onChooseAnswer={onChooseAnswer}
           />
         ))}
       </ul>

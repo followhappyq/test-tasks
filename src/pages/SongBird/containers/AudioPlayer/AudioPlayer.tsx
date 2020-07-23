@@ -1,4 +1,4 @@
-import React, { useRef, useState, FC } from "react"
+import React, { useRef, useState, FC, useEffect } from "react"
 import { AudioPlayer as BaseAudioPlayer } from "../../components"
 
 interface Props {
@@ -19,6 +19,15 @@ const AudioPlayer: FC<Props> = ({ audioSrc }) => {
       setIsPlaying(true)
     }
   }
+
+  const onAudioChange: (current: any) => void = ({ current }) => {
+    current.pause()
+    current.load()
+  }
+
+  useEffect(() => {
+    onAudioChange(audio)
+  }, [audioSrc])
 
   return <BaseAudioPlayer isPlaying={isPlaying} onPlayClicked={onPlayClicked} audio={audio} audioSrc={audioSrc} />
 }

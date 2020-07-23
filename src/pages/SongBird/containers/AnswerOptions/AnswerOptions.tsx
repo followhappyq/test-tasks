@@ -10,6 +10,7 @@ export interface Props {
   setFoundAnswer: Dispatch<SetStateAction<boolean>>
   isNextRoundStarted: boolean
   currentQuestion: listType
+  isAnswerIncorrect: () => void
 }
 
 const AnswerOptions: FC<Props> = ({
@@ -19,6 +20,7 @@ const AnswerOptions: FC<Props> = ({
   setFoundAnswer,
   isNextRoundStarted,
   currentQuestion,
+  isAnswerIncorrect,
 }) => {
   const [correctAnswer, setCorrectAnswer] = useState<boolean>(false)
   useEffect(() => {
@@ -28,6 +30,7 @@ const AnswerOptions: FC<Props> = ({
       }
     }
   }, [correctAnswer, setFoundAnswer])
+
   useEffect(() => {
     return () => {
       setCorrectAnswer(false)
@@ -44,6 +47,7 @@ const AnswerOptions: FC<Props> = ({
       setCorrectAnswer={setCorrectAnswer}
       isNextRoundStarted={isNextRoundStarted}
       currentQuestion={currentQuestion}
+      isAnswerIncorrect={isAnswerIncorrect}
     />
   )
 }

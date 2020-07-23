@@ -2,10 +2,12 @@ import React, { FC } from "react"
 
 import { Header as BaseHeader } from "../../components"
 
-interface Props {}
+interface Props {
+  score: number
+}
 
-const Header: FC = (props: Props) => {
-  return <BaseHeader />
+const Header: FC<Props> = ({ score }) => {
+  return <BaseHeader score={score} />
 }
 
 export default Header

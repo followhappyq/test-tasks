@@ -11,7 +11,7 @@ interface Props {
 const Question: FC<Props> = ({ imageSrc, audioSrc, name }) => {
   return (
     <div className="question">
-      <img src=".\assets\songbird\img\bird.jpg" alt="bird" className="question__bird" />
+      <img src={imageSrc} alt="bird" className="question__bird" />
 
       <div className="question__wrapper">
         <div className="question__name">{name}</div>

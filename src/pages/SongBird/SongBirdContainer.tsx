@@ -18,6 +18,8 @@ const SongBirdContainer = (props: Props) => {
   const [chosenAnswer, setChosenAnswer] = useState<number>(0)
   const [foundAnswer, setFoundAnswer] = useState<boolean>(false)
   const [isNextRoundStarted, setIsNextRoundStarted] = useState<boolean>(false)
+  const [score, setScore] = useState<number>(0)
+  const [answerScore, setAnswerScore] = useState<number>(5)
 
   const chooseCurrentQuestion: () => void = useCallback(() => {
     const currentQuestionListLength = currentQuestionList.length
@@ -31,20 +33,24 @@ const SongBirdContainer = (props: Props) => {
   const onChangeQuestionNumber: () => void = () => {
     if (questionNumber === questions.length - 1) {
       setIsGameEnd(true)
+      setScore(score + answerScore)
     }
     if (questionNumber < questions.length - 1) {
       setQuestionNumber(questionNumber + 1)
       setIsNextRoundStarted(true)
+      setScore(score + answerScore)
+      setAnswerScore(5)
     }
   }
 
-  useEffect(() => {
-    console.log(isNextRoundStarted)
-  }, [isNextRoundStarted])
-
   const onChangeCurrentQuestionList: () => void = useCallback(() => {
     setCurrentQuestionList(questions[questionNumber])
+    setIsNextRoundStarted(false)
   }, [questionNumber, questions])
+
+  const isAnswerIncorrect: () => void = () => {
+    setAnswerScore(answerScore - 1)
+  }
 
   useEffect(() => {
     chooseCurrentQuestion()
@@ -64,6 +70,8 @@ const SongBirdContainer = (props: Props) => {
       foundAnswer={foundAnswer}
       setFoundAnswer={setFoundAnswer}
       isNextRoundStarted={isNextRoundStarted}
+      score={score}
+      isAnswerIncorrect={isAnswerIncorrect}
     />
   )
 }

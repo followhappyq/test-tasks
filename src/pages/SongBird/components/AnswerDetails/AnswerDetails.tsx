@@ -6,7 +6,7 @@ import "./answerDetails.scss"
 
 const AnswerDetails: FC<Props> = ({ chosenAnswer }) => {
   return (
-    <div className="answer-details">
+    <div className="answer-details col-md-6">
       <div className="answer-details__header">
         <div className="answer-details__image">
           <img src={chosenAnswer.image} alt="bird" className="question__bird" />

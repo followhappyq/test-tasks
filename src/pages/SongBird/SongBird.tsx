@@ -12,6 +12,8 @@ interface Props {
   foundAnswer: boolean
   setFoundAnswer: Dispatch<SetStateAction<boolean>>
   isNextRoundStarted: boolean
+  score: number
+  isAnswerIncorrect: () => void
 }
 
 export interface listType {
@@ -32,13 +34,15 @@ const SongBird: FC<Props> = ({
   foundAnswer,
   setFoundAnswer,
   isNextRoundStarted,
+  score,
+  isAnswerIncorrect,
 }) => {
   return (
     <div className="songbird">
-      <Header />
+      <Header score={score} />
       <QuizDetails />
-      <Question question={currentQuestion} />
-      <div className="songbird__main container">
+      <Question question={currentQuestion} foundAnswer={foundAnswer} />
+      <div className="songbird__main container row mb2">
         <AnswerOptions
           currentQuestionList={currentQuestionList}
           correctId={currentQuestion.id}
@@ -46,6 +50,7 @@ const SongBird: FC<Props> = ({
           onChooseAnswer={onChooseAnswer}
           setFoundAnswer={setFoundAnswer}
           isNextRoundStarted={isNextRoundStarted}
+          isAnswerIncorrect={isAnswerIncorrect}
         />
         <AnswerDetails chosenAnswer={currentQuestionList[chosenAnswer]} />
       </div>
