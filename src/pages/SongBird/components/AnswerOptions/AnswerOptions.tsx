@@ -11,6 +11,7 @@ interface Props {
   correctAnswer: boolean
   setCorrectAnswer: (state: boolean) => void
   isNextRoundStarted: boolean
+  currentQuestion: listType
 }
 
 const AnswerOptions: FC<Props> = ({
@@ -19,6 +20,7 @@ const AnswerOptions: FC<Props> = ({
   correctAnswer,
   setCorrectAnswer,
   isNextRoundStarted,
+  currentQuestion,
 }) => {
   return (
     <div className="questions">
@@ -32,6 +34,7 @@ const AnswerOptions: FC<Props> = ({
             correctAnswer={correctAnswer}
             setCorrectAnswer={setCorrectAnswer}
             isNextRoundStarted={isNextRoundStarted}
+            currentQuestion={currentQuestion}
           />
         ))}
       </ul>

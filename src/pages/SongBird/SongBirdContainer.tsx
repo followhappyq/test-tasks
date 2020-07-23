@@ -38,6 +38,10 @@ const SongBirdContainer = (props: Props) => {
     }
   }
 
+  useEffect(() => {
+    console.log(isNextRoundStarted)
+  }, [isNextRoundStarted])
+
   const onChangeCurrentQuestionList: () => void = useCallback(() => {
     setCurrentQuestionList(questions[questionNumber])
   }, [questionNumber, questions])

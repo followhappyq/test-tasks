@@ -1,6 +1,7 @@
 import React, { FC, useState, useRef, useEffect } from "react"
 
 import { AnswerOptionsItem as BaseAnswerOptionsItem } from "../../components"
+import { listType } from "../../SongBird"
 
 export interface Props {
   id: number
@@ -9,9 +10,18 @@ export interface Props {
   correctAnswer: boolean
   setCorrectAnswer: (state: boolean) => void
   isNextRoundStarted: boolean
+  currentQuestion: listType
 }
 
-const AnswerOptionsItem: FC<Props> = ({ id, name, correctId, correctAnswer, setCorrectAnswer, isNextRoundStarted }) => {
+const AnswerOptionsItem: FC<Props> = ({
+  id,
+  name,
+  correctId,
+  correctAnswer,
+  setCorrectAnswer,
+  isNextRoundStarted,
+  currentQuestion,
+}) => {
   const [wrong, setWrong] = useState<boolean>()
   const [success, setSuccess] = useState<boolean>()
 
@@ -36,7 +46,7 @@ const AnswerOptionsItem: FC<Props> = ({ id, name, correctId, correctAnswer, setC
       setSuccess(false)
       setWrong(false)
     }
-  }, [isNextRoundStarted])
+  }, [isNextRoundStarted, currentQuestion])
 
   return (
     <BaseAnswerOptionsItem

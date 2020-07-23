@@ -42,6 +42,7 @@ const SongBird: FC<Props> = ({
         <AnswerOptions
           currentQuestionList={currentQuestionList}
           correctId={currentQuestion.id}
+          currentQuestion={currentQuestion}
           onChooseAnswer={onChooseAnswer}
           setFoundAnswer={setFoundAnswer}
           isNextRoundStarted={isNextRoundStarted}

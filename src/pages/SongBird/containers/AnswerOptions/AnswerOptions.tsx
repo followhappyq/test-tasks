@@ -9,6 +9,7 @@ export interface Props {
   onChooseAnswer: (id: number) => void
   setFoundAnswer: Dispatch<SetStateAction<boolean>>
   isNextRoundStarted: boolean
+  currentQuestion: listType
 }
 
 const AnswerOptions: FC<Props> = ({
@@ -17,6 +18,7 @@ const AnswerOptions: FC<Props> = ({
   onChooseAnswer,
   setFoundAnswer,
   isNextRoundStarted,
+  currentQuestion,
 }) => {
   const [correctAnswer, setCorrectAnswer] = useState<boolean>(false)
   useEffect(() => {
@@ -26,7 +28,6 @@ const AnswerOptions: FC<Props> = ({
       }
     }
   }, [correctAnswer, setFoundAnswer])
-
   useEffect(() => {
     return () => {
       setCorrectAnswer(false)
@@ -42,6 +43,7 @@ const AnswerOptions: FC<Props> = ({
       correctAnswer={correctAnswer}
       setCorrectAnswer={setCorrectAnswer}
       isNextRoundStarted={isNextRoundStarted}
+      currentQuestion={currentQuestion}
     />
   )
 }
