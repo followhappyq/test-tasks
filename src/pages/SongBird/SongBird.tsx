@@ -14,6 +14,8 @@ interface Props {
   isNextRoundStarted: boolean
   score: number
   isAnswerIncorrect: () => void
+  isQuizStarted: boolean
+  isGameEnd: boolean
 }
 
 export interface listType {
@@ -36,27 +38,39 @@ const SongBird: FC<Props> = ({
   isNextRoundStarted,
   score,
   isAnswerIncorrect,
+  isQuizStarted,
+  isGameEnd,
 }) => {
   return (
     <div className="songbird">
       <Header score={score} />
       <QuizDetails />
-      <Question question={currentQuestion} foundAnswer={foundAnswer} />
-      <div className="songbird__main container row mb2">
-        <AnswerOptions
-          currentQuestionList={currentQuestionList}
-          correctId={currentQuestion.id}
-          currentQuestion={currentQuestion}
-          onChooseAnswer={onChooseAnswer}
-          setFoundAnswer={setFoundAnswer}
-          isNextRoundStarted={isNextRoundStarted}
-          isAnswerIncorrect={isAnswerIncorrect}
-        />
-        <AnswerDetails chosenAnswer={currentQuestionList[chosenAnswer]} />
-      </div>
-      <div className="songbird__footer">
-        <NextQuestion onChangeQuestionNumber={onChangeQuestionNumber} foundAnswer={foundAnswer} />
-      </div>
+      {isGameEnd ? (
+        <div className="game-over">
+          <h3>Поздравляем!</h3>
+          <p>Вы набрали {score} очков.</p>
+        </div>
+      ) : (
+        <>
+          {" "}
+          <Question question={currentQuestion} foundAnswer={foundAnswer} />
+          <div className="songbird__main container row mb2">
+            <AnswerOptions
+              currentQuestionList={currentQuestionList}
+              correctId={currentQuestion.id}
+              currentQuestion={currentQuestion}
+              onChooseAnswer={onChooseAnswer}
+              setFoundAnswer={setFoundAnswer}
+              isNextRoundStarted={isNextRoundStarted}
+              isAnswerIncorrect={isAnswerIncorrect}
+            />
+            <AnswerDetails chosenAnswer={currentQuestionList[chosenAnswer]} isQuizStarted={isQuizStarted} />
+          </div>
+          <div className="songbird__footer">
+            <NextQuestion onChangeQuestionNumber={onChangeQuestionNumber} foundAnswer={foundAnswer} />
+          </div>
+        </>
+      )}
     </div>
   )
 }

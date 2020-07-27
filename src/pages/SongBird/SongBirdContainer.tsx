@@ -10,6 +10,7 @@ const getRandomNumber: (max: number) => number = (max) => {
 }
 
 const SongBirdContainer = (props: Props) => {
+  // eslint-disable-next-line
   const [questions, setQuestions] = useState(birds)
   const [currentQuestion, setCurrentQuestion] = useState<number>(0)
   const [currentQuestionList, setCurrentQuestionList] = useState(questions[0])
@@ -20,6 +21,7 @@ const SongBirdContainer = (props: Props) => {
   const [isNextRoundStarted, setIsNextRoundStarted] = useState<boolean>(false)
   const [score, setScore] = useState<number>(0)
   const [answerScore, setAnswerScore] = useState<number>(5)
+  const [isQuizStarted, setIsQuizStarted] = useState<boolean>(false)
 
   const chooseCurrentQuestion: () => void = useCallback(() => {
     const currentQuestionListLength = currentQuestionList.length
@@ -27,6 +29,7 @@ const SongBirdContainer = (props: Props) => {
   }, [currentQuestionList])
 
   const onChooseAnswer: (id: number) => void = (id) => {
+    setIsQuizStarted(true)
     setChosenAnswer(id - 1)
   }
 
@@ -72,6 +75,8 @@ const SongBirdContainer = (props: Props) => {
       isNextRoundStarted={isNextRoundStarted}
       score={score}
       isAnswerIncorrect={isAnswerIncorrect}
+      isQuizStarted={isQuizStarted}
+      isGameEnd={isGameEnd}
     />
   )
 }
